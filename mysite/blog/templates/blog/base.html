@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QAForum</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+
+
+
+          <nav class="navbar navbar-default techfont navbar-fixed-top">
+
+
+            <div class="container">
+              <ul class="nav navbar-nav">
+                <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">Q&A Forum</a></li>
+                <li><a class="active" href="{% url 'post_list' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="https://www.github.com">Github</a></li>
+                <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                  <a href="{% url 'post_new' %}" >Ask Question</a>
+                </li>
+
+                <li>
+                  <a href="{% url 'post_draft_list' %}">Drafts</a>
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}" >Log out</a>
+                </li>
+
+                <li>
+                  <a ><span class="glyphicon glyphicon-user"></span>{{ user.username }}</a>
+                </li>
+                  {% else %}
+                  <li><a class='nav navbar-right' href="{% url 'login' %}" >Login</a></li>
+                  <li><a class="nav navbar-right" href="{% url 'signup' %}">Signup</a></li>
+                {% endif %}
+
+              </ul>
+            </div>
+
+          </nav>
+<section style="margin-top: 50px">
+  <div class="container-fluid" style="background-color: rgb(79, 235, 52); text-align:center; height:123px; margin-left:0px; margin-right:0px;">
+
+    <div class="row">
+     <div class="col-md-1">
+       <img src="{% static 'images/myimg.jpg' %}" alt="Not found" style="width:123px; height:123px; border-radius: 50%; left:0px">
+     </div>
+     <div class="col-md-11">
+       <h1 style="text-align:center; color:white; margin-top: 40px">Rustamji Institute Of Technology</h1>
+     </div>
+   </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="content container">
+      <div class="row">
+          <div class="col-md-8">
+            <div class="blog_posts">
+              {% block content %}
+
+              {% endblock %}
+
+            </div>
+
+          </div>
+      </div>
+  </div>
+</section>
+
+<div class="cleared"></div><div class="art-Footer" style="text-align: center; margin-top: 30px; background-color: magenta">
+                    <div class="art-Footer-inner">
+                        <a href="#" class="art-rss-tag-icon" title="RSS"></a>
+                        <div class="art-Footer-text">
+                            <p><a href="#">Contact Us</a> | <a href="#">Terms of Use</a>
+                                | <a href="#">Privacy Statement</a> | <a href="#">RjitForum</a><br />
+                                Copyright &copy; 2019 @ All Rights Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="art-Footer-background"></div>
+                </div>
+
+
+  </body>
+</html>

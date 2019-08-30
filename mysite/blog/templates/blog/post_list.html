@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h1 style="font-weight:bold">Top Discussions: </h1><br>
+<div class="centerstage">
+  {% for post in post_list %}
+  <div class="post">
+    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+    <div class="date">
+      <p>Question asked on: {{ post.published_date|date:"d M Y"}}</p>
+    </div>
+    <a href="{% url 'post_detail' pk=post.pk %}">Given Answers: {{ post.approve_comments.count }}</a>
+  </div>
+
+  {% endfor %}
+</div>
+<br>
+{% endblock %}
